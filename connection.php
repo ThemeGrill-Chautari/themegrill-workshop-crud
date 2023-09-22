@@ -3,20 +3,13 @@ if (!defined('THEMEGRILL_WORKSHOP')) {
     die("Cheating? huh?");
 
 }
-
-function db_connection()
-{
-    /* Connect to a MySQL database */
-
-    $mysqli = new mysqli("localhost", "root", "root", "workshop");
+    $db_connection = new mysqli("localhost", "root", "", "workshop");
 
 // Check connection
-    if ($mysqli->connect_errno) {
-        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+    if ($db_connection->connect_errno) {
+        echo "Failed to connect to MySQL: " . $db_connection->connect_error;
         exit();
     }
-    return $mysqli;
-}
 
 $create_student_query = "CREATE TABLE IF NOT EXISTS student (
     ID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -33,6 +26,7 @@ $users_table_query = "CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL
     );";
 
-db_connection()->real_query($create_student_query);
+//db_connection()->real_query($create_student_query);
 
-db_connection()->real_query($users_table_query);
+//db_connection()->real_query($users_table_query);
+
