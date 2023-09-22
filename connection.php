@@ -11,7 +11,7 @@ if (!defined('THEMEGRILL_WORKSHOP')) {
         exit();
     }
 
-$create_student_query = "CREATE TABLE IF NOT EXISTS student (
+$create_student_query = "CREATE TABLE IF NOT EXISTS students (
     ID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     student_name VARCHAR(255),
     phone_number INT,
@@ -26,7 +26,7 @@ $users_table_query = "CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL
     );";
 
-//db_connection()->real_query($create_student_query);
+$db_connection->real_query($create_student_query);
 
-//db_connection()->real_query($users_table_query);
+$db_connection->real_query($users_table_query);
 

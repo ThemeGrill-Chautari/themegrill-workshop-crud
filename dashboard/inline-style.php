@@ -90,12 +90,16 @@ if (!defined('THEMEGRILL_WORKSHOP')) {
         }
 
         form input[type="text"],
-        form input[type="password"] {
+        form input[type="password"],
+        form textarea {
             width: 90%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 3px;
+        }
+        textarea{
+            height:100px;
         }
 
         form button {
