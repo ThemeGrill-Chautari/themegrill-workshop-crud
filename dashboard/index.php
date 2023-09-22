@@ -30,15 +30,6 @@ $user = $_SESSION['user'];
         <h2>Welcome, <?php echo $user['username'] ?>!</h2>
         <p>This is your user dashboard. You can access your account information and perform various actions here.</p>
     </div>
-    <div class="card-container">
-        <?php
-            include_once "add-new-user.php"; 
-            include_once "user-listing.php";
-            include_once "add-new-student.php";
-            include_once "student-listing.php";
-
-        ?>
-    </div>
     <footer>
         &copy; 2023 User Dashboard
     </footer>
