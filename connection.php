@@ -21,7 +21,9 @@ $users_table_query = "CREATE TABLE IF NOT EXISTS users (
     ID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(255) UNIQUE NOT NULL,
     email varchar(255) UNIQUE  NOT NULL,
-    password TEXT
+    password TEXT NOT NULL
     );";
 
 $mysqli->real_query($create_student_query);
+
+$mysqli->real_query($users_table_query);
