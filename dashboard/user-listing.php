@@ -3,6 +3,20 @@ if (!defined('THEMEGRILL_WORKSHOP')) {
     die("Cheating? huh?");
 
 }
+
+$user_query = "SELECT * FROM users;";
+
+$user_statement = $db_connection->prepare($user_query);
+
+// and "ss" indicates that both parameters are strings.
+//$statement->bind_param("ss", $username, $hash_password);
+
+$user_statement->execute();
+
+# Use get_result() when you expect to retrieve a result set, typically for SELECT queries.
+$user_results = $user_statement->get_result();
+
+
 ?>
 <div class="card">
             <h2>User Listing</h2>
@@ -16,24 +30,20 @@ if (!defined('THEMEGRILL_WORKSHOP')) {
                     </tr>
                 </thead>
                 <tbody>
+                   <?php while($user = $user_results->fetch_assoc()){
+                    
+                        ?>
                     <tr>
-                        <td>1</td>
-                        <td>User1</td>
-                        <td>user1@example.com</td>
+                        <td><?php echo $user['ID'] ?></td>
+                        <td><?php echo $user['username'] ?></td>
+                        <td><?php echo $user['email'] ?></td>
                         <td>
                             <button class="edit-user-button" onclick="editUser()">Edit</button>
                             <button class="delete-user-button" onclick="deleteUser()">Delete</button>
                         </td>
+                       
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>User2</td>
-                        <td>user2@example.com</td>
-                        <td>
-                            <button class="edit-user-button" onclick="editUser()">Edit</button>
-                            <button class="delete-user-button" onclick="deleteUser()">Delete</button>
-                        </td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
