@@ -16,17 +16,6 @@ $student_statement->execute();
 # Use get_result() when you expect to retrieve a result set, typically for SELECT queries.
 $student_results = $student_statement->get_result();
 
-if(isset($_GET['delete'])){
-    $ID = $_GET['delete'];
-
-    $delete_query = "DELETE FROM students WHERE ID = ?";
-
-    $delete_statement = $db_connection->prepare($delete_query);
-
-    $delete_statement->bind_param("i",$ID);
-
-    $delete_statement->execute();
-}
 
 ?>
 
@@ -54,8 +43,8 @@ if(isset($_GET['delete'])){
                         <td><?php echo $student['bio'] ?></td>
                         <td><?php echo $student['remarks'] ?></td>
                         <td>
-                            <button class="edit-student-button" onclick="editStudent()" name="edit_student"><a href="index.php/add-new-student.php?edit=<?php echo $student['ID'];?>">Edit</a></button>
-                            <button class="delete-student-button" onclick="deleteStudent()"><a href="index.php/student-listing.php?delete=<?php echo $student['ID'];?>">Delete</button>
+                            <button class="edit-student-button" onclick="editStudent()">Edit</button>
+                            <button class="delete-student-button" onclick="deleteStudent()">Delete</button>
                         </td>
                        
                     </tr>
