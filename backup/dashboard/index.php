@@ -35,7 +35,8 @@ $user = $_SESSION['user'];
             include_once "add-new-user.php"; 
             include_once "user-listing.php";
             include_once "add-new-student.php";
-            include_once "student-listing.php";          
+            include_once "student-listing.php";
+
         ?>
     </div>
     <footer>
