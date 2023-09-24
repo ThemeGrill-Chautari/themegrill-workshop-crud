@@ -1,7 +1,6 @@
 <?php
 if (!defined('THEMEGRILL_WORKSHOP')) {
     die("Cheating? huh?");
-
 }
 
 $student_query = "SELECT * FROM students";
@@ -16,6 +15,19 @@ $student_statement->execute();
 # Use get_result() when you expect to retrieve a result set, typically for SELECT queries.
 $student_results = $student_statement->get_result();
 
+
+
+if(isset($_GET['delete'])){
+    $receivedID = $_GET['delete'];
+
+    $delete_query = "DELETE FROM students WHERE ID = ?";
+
+    $delete_statement = $db_connection->prepare($delete_query);
+
+    $delete_statement->bind_param("i",$receivedID);
+
+    $delete_statement->execute();
+}
 
 ?>
 
@@ -42,9 +54,14 @@ $student_results = $student_statement->get_result();
                         <td><?php echo $student['phone_number'] ?></td>
                         <td><?php echo $student['bio'] ?></td>
                         <td><?php echo $student['remarks'] ?></td>
+                        <!-- <td> -->
+                            <!-- <button class="edit-student-button" onclick="editStudent()">Edit</button> -->
+                            <!-- <button class="edit-student-button" onclick="editStudent(<?php $student['ID']?>)">Edit</button>
+                            <button class="delete-student-button" onclick="deleteStudent(<?php $student['ID']?>)">Delete</button> -->
+                        <!-- </td> -->
                         <td>
-                            <button class="edit-student-button" onclick="editStudent()">Edit</button>
-                            <button class="delete-student-button" onclick="deleteStudent()">Delete</button>
+                            <button class="edit-student-button"> <a href="index.php/add-new-student.php?edit=<?php echo $student['ID']; ?>">Edit </a></button>
+                            <button class="delete-student-button"><a href="index.php/student-listing.php?delete=<?php echo $student['ID']; ?>">Delete</a></button>
                         </td>
                        
                     </tr>

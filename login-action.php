@@ -3,12 +3,13 @@ define('THEMEGRILL_WORKSHOP', true);
 
 if (!isset($_POST['do_login'])) {
     header('location:login.php');
+    return;
 }
 require "connection.php";
 
-$username = isset($_POST['username']) ? $_POST['username'] : $_POST['username'];
+$username = isset($_POST['username']) ? $_POST['username'] : "";
 
-$password = isset($_POST['password']) ? $_POST['password'] : $_POST['password'];
+$password = isset($_POST['password']) ? $_POST['password'] : "";
 
 $hash_password = md5($password);
 
@@ -40,12 +41,14 @@ $statement->close();
 
 // If you want to see the structure of the result set, you can use print_r as you did.
 
-if(!count($user)){
-    header('location:login.php?error=Something went wrong');  
+if(!($user) || $user ===NULL){
+    header('location:login.php?error=Something went wrong');
+    return;  
 }
 if($user['username']!==$username){
 
     header('location:login.php?error=Something went wrong');  
+    return;
 }
 
 session_start();
@@ -53,7 +56,7 @@ session_start();
 $_SESSION['user']= $user;
 
 header('location:dashboard/index.php');
-
+return;
 
 
 
